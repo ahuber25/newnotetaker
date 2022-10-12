@@ -14,9 +14,27 @@ $(document).ready(function() {
         }
     }
 
+    let events = {};
+
+    let hourlies = moment();
+
+    function renderTimeSheet(today, events) {
+
+        let timeSheet = $("div.container");
+
+        for (let i=1; i<10; i++) {
+
+        }
+
+    }
+
+    renderTimeSheet();
     initTimeSheet();
     loadTimeSheet();
+    storeTimeSheet();
 
-    
+    function storeTimeSheet() {
+        localStorage.setItem("events", JSON.stringify(events))
+    }
 
 })

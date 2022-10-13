@@ -5,6 +5,7 @@ $(document).ready(function() {
     function initTimeSheet() {
         let today = moment();
         currentDay.text(today.format('llll'));
+        renderTimeSheet(today, events);
     }
 
     function loadTimeSheet() {
@@ -26,6 +27,7 @@ $(document).ready(function() {
 
         for (let i=1; i<10; i++) {
 
+            let row = $("div").addClass("row");
             let hourClass = "";
 
             if (today.isBefore(hourRow, "hour")){
@@ -36,10 +38,16 @@ $(document).ready(function() {
                 hourClass = "present"
             }
 
-            let row = $("div").addClass("row");
+            
             let hourStyle = hourRow.format("ha");
             timeSheet.append(row)
-            
+            row.append($("<div>").addClass("col-2 hour").text(hourRow, "hour"))
+            row.append($("<textarea>").addClass("col-8").text(events[hourStyle]))
+            row.append($("<button>").addClass("col-2 saveBtn").html("<i class='fas fa-save'></i>").attr("aria-label", "Save").attr("id", hourRow.format("ha")));
+
+            hourRow.add(1, "hour");
+
+            hourlies = moment();
         }
 
     }

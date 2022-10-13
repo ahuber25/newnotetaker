@@ -27,7 +27,7 @@ $(document).ready(function() {
 
         for (let i=1; i<10; i++) {
 
-            let row = $("div").addClass("row");
+            let row = $("<div>").addClass("row");
             let hourClass = "";
 
             if (today.isBefore(hourRow, "hour")){
@@ -39,11 +39,11 @@ $(document).ready(function() {
             }
 
             
-            let hourStyle = hourRow.format("ha");
+            let hourStyle = hourRow.format("h a");
             timeSheet.append(row)
-            row.append($("<div>").addClass("col-2 hour").text(hourRow, "hour"))
-            row.append($("<textarea>").addClass("col-8").text(events[hourStyle]))
-            row.append($("<button>").addClass("col-2 saveBtn").html("<i class='fas fa-save'></i>").attr("aria-label", "Save").attr("id", hourRow.format("ha")));
+            row.append($("<div>").addClass("col-2 hour").text(hourRow.format("h a")))
+            row.append($("<textarea>").addClass(`col-8 ${hourClass}`).text(events[hourStyle]))
+            row.append($("<button>").addClass("col-2 saveBtn").html("<i class='fas fa-save'></i>").attr("aria-label", "Save").attr("id", hourRow.format("h a")));
 
             hourRow.add(1, "hour");
 
@@ -56,10 +56,12 @@ $(document).ready(function() {
 
     initTimeSheet();
     loadTimeSheet();
-    storeTimeSheet();
 
     function storeTimeSheet() {
         localStorage.setItem("events", JSON.stringify(events))
     }
+
+
+
 
 })
